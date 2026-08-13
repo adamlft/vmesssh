@@ -24,7 +24,8 @@ const PORT = 8081;
 
 const UUID = process.env.UUID || '1f37ac4f-fdd0-49df-9406-1eda70a1d512'; 
 
-const ARGO_PORT = 8001;            
+const ARGO_PORT = 8001;     
+const ARGO_PORT = 8002;     
 
 const CFPORT = process.env.CFPORT || 443;                  
 const NAME = process.env.NAME || 'ddfathu';                        
@@ -692,7 +693,7 @@ const server = http.createServer(async (req, res) => {
         
         let quickUrl = currentActiveDomain || "Menunggu Quick Tunnel...";
         let ztSshDomains = getDomainsByPort(['8880', '8881']);
-        let ztVmessDomains = getDomainsByPort(['8001']);
+        let ztVmessDomains = getDomainsByPort(['8001', '8002']);
         let passConfigured = getAdminPassword() !== null;
         let netSettings = getNetworkSettings();
         let wsProxyCfg = getWsProxyConfig();
@@ -1336,6 +1337,12 @@ const server = http.createServer(async (req, res) => {
                                 optionsHtml += '<option value="' + d.domain + '">🛡️ Zero Argo VMess (Port 8001): ' + d.domain + '</option>';
                             });
                         }
+
+                        if (data.zt_vmess_domains && data.zt_vmess_domains.length > 0) {
+                            data.zt_vmess_domains.forEach(d => {
+                                optionsHtml += '<option value="' + d.domain + '">🛡️ Zero Argo VMess (Port 8002): ' + d.domain + '</option>';
+                            });
+                        }                        
 
                         if (!optionsHtml) {
                             optionsHtml = '<option value="">-- Menunggu Domain VMess --</option>';
