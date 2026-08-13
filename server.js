@@ -1336,12 +1336,6 @@ const server = http.createServer(async (req, res) => {
                             data.zt_vmess_domains.forEach(d => {
                                 optionsHtml += '<option value="' + d.domain + '">🛡️ Zero Argo VMess (Port 8001): ' + d.domain + '</option>';
                             });
-                        }
-
-                        if (data.zt_vmess_domains && data.zt_vmess_domains.length > 0) {
-                            data.zt_vmess_domains.forEach(d => {
-                                optionsHtml += '<option value="' + d.domain + '">🛡️ Zero Argo VMess Wildcard (Port 8002): ' + d.domain + '</option>';
-                            });
                         }                        
 
                         if (!optionsHtml) {
